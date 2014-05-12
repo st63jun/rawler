@@ -26,6 +26,7 @@ EOS
   opt :iinclude, "Only include URLS that match a case insensitive pattern. Equivalent to '--include ^http://mysite.com/*'.", :type => :string
   opt :local, "Restrict to the given URL and below", :type => :boolean, :default => false
   opt :max_depth, "Maximum depth of recursive crawling", :type => :int
+  opt :encoding, "Specify encoding that should be used when processing the document", :type => :string
 end
 
 

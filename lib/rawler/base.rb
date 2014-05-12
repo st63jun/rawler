@@ -18,6 +18,7 @@ module Rawler
       
       Rawler.local    = options[:local]
       Rawler.max_depth = options[:max_depth]
+      Rawler.encoding = options[:encoding]
 
       Rawler.set_include_pattern(options[:include], false) unless options[:include].nil?
       Rawler.set_include_pattern(options[:iinclude], true) unless options[:iinclude].nil?
