@@ -17,6 +17,7 @@ module Rawler
       Rawler.css      = options[:css]
       
       Rawler.local    = options[:local]
+      Rawler.encoding = options[:encoding]
 
       Rawler.set_include_pattern(options[:include], false) unless options[:include].nil?
       Rawler.set_include_pattern(options[:iinclude], true) unless options[:iinclude].nil?

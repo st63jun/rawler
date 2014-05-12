@@ -25,6 +25,7 @@ EOS
   opt :include, "Only include URLS that match a pattern", :type => :string
   opt :iinclude, "Only include URLS that match a case insensitive pattern. Equivalent to '--include ^http://mysite.com/*'.", :type => :string
   opt :local, "Restrict to the given URL and below", :type => :boolean, :default => false
+  opt :encoding, "Specify encoding that should be used when processing the document", :type => :string
 end
 
 

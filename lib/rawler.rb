@@ -2,6 +2,7 @@ require 'rubygems'
 require 'net/https'
 require 'nokogiri'
 require 'logger'
+require 'addressable/uri'
 require_relative 'rawler/core_extensions'
 module Rawler
   dir = File.dirname(__FILE__)
@@ -15,6 +16,7 @@ module Rawler
   mattr_accessor :css
   mattr_accessor :include_url_pattern
   mattr_accessor :skip_url_pattern
+  mattr_accessor :encoding
 
   autoload :Base, File.join(dir, 'rawler', 'base')
   autoload :Crawler, File.join(dir, 'rawler', 'crawler')

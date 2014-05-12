@@ -32,7 +32,7 @@ module Rawler
           write("Connection to #{url} timed out")
         else
           # parse the document
-          doc = Nokogiri::HTML(response.body)
+          doc = Nokogiri::HTML(response.body, nil, Rawler.encoding)
           links = doc.css(selector).map { |a| a['href'] }.select { |url| !url.nil? }.map { |url| absolute_url(url) }.select { |url| valid_url?(url) }
         end
       end
@@ -41,7 +41,7 @@ module Rawler
     end
 
     def absolute_url(path)
-      path = URI.encode(path.strip, Regexp.new("[^#{URI::PATTERN::UNRESERVED}#{URI::PATTERN::RESERVED}#]"))
+      path = Addressable::URI.normalized_encode(path.strip)
 
       if URI.parse(path).scheme
         path
