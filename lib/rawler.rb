@@ -15,6 +15,7 @@ module Rawler
   mattr_accessor :css
   mattr_accessor :include_url_pattern
   mattr_accessor :skip_url_pattern
+  mattr_accessor :max_depth
 
   autoload :Base, File.join(dir, 'rawler', 'base')
   autoload :Crawler, File.join(dir, 'rawler', 'crawler')

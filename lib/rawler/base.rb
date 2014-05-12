@@ -17,6 +17,7 @@ module Rawler
       Rawler.css      = options[:css]
       
       Rawler.local    = options[:local]
+      Rawler.max_depth = options[:max_depth]
 
       Rawler.set_include_pattern(options[:include], false) unless options[:include].nil?
       Rawler.set_include_pattern(options[:iinclude], true) unless options[:iinclude].nil?
@@ -29,6 +30,8 @@ module Rawler
       Rawler.log      = options[:log] || Rawler.logfile != DEFAULT_LOGFILE
 
       @logfile = File.new(Rawler.logfile, "w") if Rawler.log
+
+      @current_depth = 0
     end
 
     def validate
@@ -55,7 +58,11 @@ module Rawler
     def validate_page(page_url, from_url)
       if not_yet_parsed?(page_url)
         add_status_code(page_url, from_url) 
-        validate_links_in_page(page_url) if same_domain?(page_url)
+        if Rawler.max_depth == nil or Rawler.max_depth > @current_depth
+          @current_depth += 1
+          validate_links_in_page(page_url) if same_domain?(page_url)
+          @current_depth -= 1
+        end
         validate_css_links_in_page(page_url) if same_domain?(page_url) and Rawler.css
       end
     end
